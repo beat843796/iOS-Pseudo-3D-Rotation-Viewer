@@ -1,0 +1,343 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB93325614C0420F000F15D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB93325514C0420F000F15D9 /* UIKit.framework */; };
+		AB93325814C0420F000F15D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB93325714C0420F000F15D9 /* Foundation.framework */; };
+		AB93325A14C0420F000F15D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB93325914C0420F000F15D9 /* CoreGraphics.framework */; };
+		AB93326014C0420F000F15D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB93325E14C0420F000F15D9 /* InfoPlist.strings */; };
+		AB93326214C0420F000F15D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB93326114C0420F000F15D9 /* main.m */; };
+		AB93326614C0420F000F15D9 /* RVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB93326514C0420F000F15D9 /* RVAppDelegate.m */; };
+		AB93326F14C04245000F15D9 /* RVRotationViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB93326D14C04245000F15D9 /* RVRotationViewerController.m */; };
+		AB93327514C04B50000F15D9 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB93327414C04B50000F15D9 /* ZipArchive.mm */; };
+		AB93327814C04C03000F15D9 /* animation_sample.zip in Resources */ = {isa = PBXBuildFile; fileRef = AB93327714C04C03000F15D9 /* animation_sample.zip */; };
+		AB93327B14C04C20000F15D9 /* PSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB93327A14C04C20000F15D9 /* PSFileManager.m */; };
+		AB93328814C04DE3000F15D9 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = AB93328014C04DE3000F15D9 /* ioapi.c */; };
+		AB93328914C04DE3000F15D9 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = AB93328214C04DE3000F15D9 /* mztools.c */; };
+		AB93328A14C04DE3000F15D9 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = AB93328414C04DE3000F15D9 /* unzip.c */; };
+		AB93328B14C04DE3000F15D9 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = AB93328614C04DE3000F15D9 /* zip.c */; };
+		AB93328C14C04DED000F15D9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AB93327114C04B1A000F15D9 /* libz.1.2.5.dylib */; };
+		AB93328F14C051B2000F15D9 /* RVRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB93328E14C051B2000F15D9 /* RVRotationView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AB93325114C0420F000F15D9 /* Rotation Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotation Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB93325514C0420F000F15D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AB93325714C0420F000F15D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AB93325914C0420F000F15D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AB93325D14C0420F000F15D9 /* Rotation Viewer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rotation Viewer-Info.plist"; sourceTree = "<group>"; };
+		AB93325F14C0420F000F15D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB93326114C0420F000F15D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AB93326314C0420F000F15D9 /* Rotation Viewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rotation Viewer-Prefix.pch"; sourceTree = "<group>"; };
+		AB93326414C0420F000F15D9 /* RVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RVAppDelegate.h; sourceTree = "<group>"; };
+		AB93326514C0420F000F15D9 /* RVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RVAppDelegate.m; sourceTree = "<group>"; };
+		AB93326C14C04245000F15D9 /* RVRotationViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVRotationViewerController.h; sourceTree = "<group>"; };
+		AB93326D14C04245000F15D9 /* RVRotationViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVRotationViewerController.m; sourceTree = "<group>"; };
+		AB93327114C04B1A000F15D9 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		AB93327314C04B50000F15D9 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		AB93327414C04B50000F15D9 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		AB93327714C04C03000F15D9 /* animation_sample.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = animation_sample.zip; sourceTree = "<group>"; };
+		AB93327914C04C20000F15D9 /* PSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSFileManager.h; sourceTree = "<group>"; };
+		AB93327A14C04C20000F15D9 /* PSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSFileManager.m; sourceTree = "<group>"; };
+		AB93327C14C04D9A000F15D9 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		AB93327F14C04DE3000F15D9 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		AB93328014C04DE3000F15D9 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		AB93328114C04DE3000F15D9 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		AB93328214C04DE3000F15D9 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		AB93328314C04DE3000F15D9 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		AB93328414C04DE3000F15D9 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		AB93328514C04DE3000F15D9 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		AB93328614C04DE3000F15D9 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		AB93328714C04DE3000F15D9 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		AB93328D14C051B2000F15D9 /* RVRotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVRotationView.h; sourceTree = "<group>"; };
+		AB93328E14C051B2000F15D9 /* RVRotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVRotationView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB93324E14C0420F000F15D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB93328C14C04DED000F15D9 /* libz.1.2.5.dylib in Frameworks */,
+				AB93325614C0420F000F15D9 /* UIKit.framework in Frameworks */,
+				AB93325814C0420F000F15D9 /* Foundation.framework in Frameworks */,
+				AB93325A14C0420F000F15D9 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB93324614C0420E000F15D9 = {
+			isa = PBXGroup;
+			children = (
+				AB93327C14C04D9A000F15D9 /* libz.1.1.3.dylib */,
+				AB93327114C04B1A000F15D9 /* libz.1.2.5.dylib */,
+				AB93325B14C0420F000F15D9 /* Rotation Viewer */,
+				AB93325414C0420F000F15D9 /* Frameworks */,
+				AB93325214C0420F000F15D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB93325214C0420F000F15D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB93325114C0420F000F15D9 /* Rotation Viewer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB93325414C0420F000F15D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB93325514C0420F000F15D9 /* UIKit.framework */,
+				AB93325714C0420F000F15D9 /* Foundation.framework */,
+				AB93325914C0420F000F15D9 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB93325B14C0420F000F15D9 /* Rotation Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				AB93327E14C04DE3000F15D9 /* minizip */,
+				AB93327914C04C20000F15D9 /* PSFileManager.h */,
+				AB93327A14C04C20000F15D9 /* PSFileManager.m */,
+				AB93327614C04B53000F15D9 /* Dummy */,
+				AB93327314C04B50000F15D9 /* ZipArchive.h */,
+				AB93327414C04B50000F15D9 /* ZipArchive.mm */,
+				AB93326414C0420F000F15D9 /* RVAppDelegate.h */,
+				AB93326514C0420F000F15D9 /* RVAppDelegate.m */,
+				AB93326C14C04245000F15D9 /* RVRotationViewerController.h */,
+				AB93326D14C04245000F15D9 /* RVRotationViewerController.m */,
+				AB93328D14C051B2000F15D9 /* RVRotationView.h */,
+				AB93328E14C051B2000F15D9 /* RVRotationView.m */,
+				AB93325C14C0420F000F15D9 /* Supporting Files */,
+			);
+			path = "Rotation Viewer";
+			sourceTree = "<group>";
+		};
+		AB93325C14C0420F000F15D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB93327714C04C03000F15D9 /* animation_sample.zip */,
+				AB93325D14C0420F000F15D9 /* Rotation Viewer-Info.plist */,
+				AB93325E14C0420F000F15D9 /* InfoPlist.strings */,
+				AB93326114C0420F000F15D9 /* main.m */,
+				AB93326314C0420F000F15D9 /* Rotation Viewer-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB93327614C04B53000F15D9 /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Dummy;
+			sourceTree = "<group>";
+		};
+		AB93327E14C04DE3000F15D9 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				AB93327F14C04DE3000F15D9 /* crypt.h */,
+				AB93328014C04DE3000F15D9 /* ioapi.c */,
+				AB93328114C04DE3000F15D9 /* ioapi.h */,
+				AB93328214C04DE3000F15D9 /* mztools.c */,
+				AB93328314C04DE3000F15D9 /* mztools.h */,
+				AB93328414C04DE3000F15D9 /* unzip.c */,
+				AB93328514C04DE3000F15D9 /* unzip.h */,
+				AB93328614C04DE3000F15D9 /* zip.c */,
+				AB93328714C04DE3000F15D9 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB93325014C0420F000F15D9 /* Rotation Viewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB93326914C0420F000F15D9 /* Build configuration list for PBXNativeTarget "Rotation Viewer" */;
+			buildPhases = (
+				AB93324D14C0420F000F15D9 /* Sources */,
+				AB93324E14C0420F000F15D9 /* Frameworks */,
+				AB93324F14C0420F000F15D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rotation Viewer";
+			productName = "Rotation Viewer";
+			productReference = AB93325114C0420F000F15D9 /* Rotation Viewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB93324814C0420E000F15D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = AB93324B14C0420E000F15D9 /* Build configuration list for PBXProject "Rotation Viewer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AB93324614C0420E000F15D9;
+			productRefGroup = AB93325214C0420F000F15D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AB93325014C0420F000F15D9 /* Rotation Viewer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB93324F14C0420F000F15D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB93326014C0420F000F15D9 /* InfoPlist.strings in Resources */,
+				AB93327814C04C03000F15D9 /* animation_sample.zip in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB93324D14C0420F000F15D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB93326214C0420F000F15D9 /* main.m in Sources */,
+				AB93326614C0420F000F15D9 /* RVAppDelegate.m in Sources */,
+				AB93326F14C04245000F15D9 /* RVRotationViewerController.m in Sources */,
+				AB93327514C04B50000F15D9 /* ZipArchive.mm in Sources */,
+				AB93327B14C04C20000F15D9 /* PSFileManager.m in Sources */,
+				AB93328814C04DE3000F15D9 /* ioapi.c in Sources */,
+				AB93328914C04DE3000F15D9 /* mztools.c in Sources */,
+				AB93328A14C04DE3000F15D9 /* unzip.c in Sources */,
+				AB93328B14C04DE3000F15D9 /* zip.c in Sources */,
+				AB93328F14C051B2000F15D9 /* RVRotationView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AB93325E14C0420F000F15D9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB93325F14C0420F000F15D9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AB93326714C0420F000F15D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AB93326814C0420F000F15D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AB93326A14C0420F000F15D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Clemens Hammerl";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Rotation Viewer/Rotation Viewer-Prefix.pch";
+				INFOPLIST_FILE = "Rotation Viewer/Rotation Viewer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CB402FC6-48B2-489B-8B77-CF295A25157F";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AB93326B14C0420F000F15D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Clemens Hammerl";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Rotation Viewer/Rotation Viewer-Prefix.pch";
+				INFOPLIST_FILE = "Rotation Viewer/Rotation Viewer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CB402FC6-48B2-489B-8B77-CF295A25157F";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB93324B14C0420E000F15D9 /* Build configuration list for PBXProject "Rotation Viewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB93326714C0420F000F15D9 /* Debug */,
+				AB93326814C0420F000F15D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB93326914C0420F000F15D9 /* Build configuration list for PBXNativeTarget "Rotation Viewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB93326A14C0420F000F15D9 /* Debug */,
+				AB93326B14C0420F000F15D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AB93324814C0420E000F15D9 /* Project object */;
+}
