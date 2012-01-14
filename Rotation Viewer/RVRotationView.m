@@ -48,6 +48,28 @@
     return self;
 }
 
+-(NSInteger)numberOfImages
+{
+    if (imagePaths != nil) {
+        return [imagePaths count];
+    }else {
+        return 0;
+    }
+}
+
+-(void)displayImageWithPosition:(NSInteger)imagePosition
+{
+    if (imagePosition < [imagePaths count]) {
+        
+        animationPosition = imagePosition;
+        
+        [self displayImage];
+        
+    }
+    
+    NSLog(@"Error: imagePosition out of Range. Valid Range: 0-%i",[imagePaths count]);
+}
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];

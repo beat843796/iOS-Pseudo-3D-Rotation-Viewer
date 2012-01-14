@@ -47,4 +47,7 @@
 
 -(void)loadAnimationFromDirectory:(NSString *)animationDirectory;
 
+-(NSInteger)numberOfImages;
+-(void)displayImageWithPosition:(NSInteger)imagePosition
+
 @end
