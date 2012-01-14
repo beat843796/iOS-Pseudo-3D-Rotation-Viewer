@@ -11,7 +11,7 @@
 @interface RVRotationView : UIView {
     
     UIImageView *imageView;
-    
+    BOOL decelerateAnimation;
     NSMutableArray *imagePaths;
     
     @private
@@ -44,10 +44,11 @@
 @property (nonatomic, retain) NSArray *imagePaths;
 @property (nonatomic, readonly) UIImageView *imageView;
 @property (nonatomic, assign) float dragSensitivity;
+@property (nonatomic, assign) BOOL decelerateAnimation;
 
 -(void)loadAnimationFromDirectory:(NSString *)animationDirectory;
 
 -(NSInteger)numberOfImages;
--(void)displayImageWithPosition:(NSInteger)imagePosition
+-(void)displayImageWithPosition:(NSInteger)imagePosition;
 
 @end

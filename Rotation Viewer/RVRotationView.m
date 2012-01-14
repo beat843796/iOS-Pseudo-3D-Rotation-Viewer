@@ -26,6 +26,7 @@
 @synthesize imageView;
 @synthesize  imagePaths;
 @synthesize dragSensitivity;
+@synthesize decelerateAnimation = shouldDecelerateAnimation;
 
 - (id)initWithFrame:(CGRect)frame
 {
