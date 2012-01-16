@@ -312,6 +312,7 @@
 				INFOPLIST_FILE = "Rotation Viewer/Rotation Viewer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "CB402FC6-48B2-489B-8B77-CF295A25157F";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -325,6 +326,7 @@
 				INFOPLIST_FILE = "Rotation Viewer/Rotation Viewer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "CB402FC6-48B2-489B-8B77-CF295A25157F";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

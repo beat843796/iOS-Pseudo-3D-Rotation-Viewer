@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "RVRotationView.h"
+
+
 @interface RVRotationViewerController : UIViewController {
     
     NSString *imageDirectory;
     
     @private
     RVRotationView *rotationView;
+    
+    UIButton *rotateLeftButton;
+    UIButton *rotateRightButton;
+    UIButton *startButton;
+    UIButton *stopButton;
+    UISlider *rotationSpeedSlider;
     
 }
 

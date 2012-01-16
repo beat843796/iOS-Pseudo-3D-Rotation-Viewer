@@ -9,6 +9,16 @@
 #import "RVRotationViewerController.h"
 
 
+@interface RVRotationViewerController (private) 
+
+-(void)pressedStartButton;
+-(void)pressedEndButton;
+-(void)pressedRotateLeftButton;
+-(void)pressedRotateRightButton;
+-(void)sliderValueChanged:(id)sender;
+
+@end
+
 @implementation RVRotationViewerController
 @synthesize imageDirectory;
 
@@ -78,6 +88,64 @@
     [rotationView loadAnimationFromDirectory:self.imageDirectory];
     
     
+    rotateLeftButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [rotateLeftButton addTarget:self action:@selector(pressedRotateLeftButton) forControlEvents:UIControlEventTouchUpInside];
+    [rotateLeftButton setTitle:@"<<" forState:UIControlStateNormal];
+    rotateLeftButton.frame = CGRectMake(10, 10, 60, 40);
+    [self.view addSubview:rotateLeftButton];
+    
+    startButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [startButton addTarget:self action:@selector(pressedStartButton) forControlEvents:UIControlEventTouchUpInside];
+    [startButton setTitle:@"Play" forState:UIControlStateNormal];
+    startButton.frame = CGRectMake(80, 10, 60, 40);
+    [self.view addSubview:startButton];
+    
+    stopButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [stopButton addTarget:self action:@selector(pressedEndButton) forControlEvents:UIControlEventTouchUpInside];
+    [stopButton setTitle:@"Stop" forState:UIControlStateNormal];
+    stopButton.frame = CGRectMake(150, 10, 60, 40);
+    [self.view addSubview:stopButton];
+    
+    rotateRightButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [rotateRightButton addTarget:self action:@selector(pressedRotateRightButton) forControlEvents:UIControlEventTouchUpInside];
+    [rotateRightButton setTitle:@">>" forState:UIControlStateNormal];
+    rotateRightButton.frame = CGRectMake(220, 10, 60, 40);
+    [self.view addSubview:rotateRightButton];
+    
+    rotationSpeedSlider = [[UISlider alloc] initWithFrame:CGRectMake(10, 55, 270, 30)];
+    [rotationSpeedSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    rotationSpeedSlider.minimumValue = 1;
+    rotationSpeedSlider.maximumValue = 30;
+    rotationSpeedSlider.value = 15;
+    [self.view addSubview:rotationSpeedSlider];
+    [rotationSpeedSlider release];
+    
+    
+}
+
+-(void)pressedStartButton
+{
+    NSLog(@"Pressed Start");
+}
+
+-(void)pressedEndButton
+{
+    NSLog(@"Pressed End");
+}
+
+-(void)pressedRotateLeftButton
+{
+    NSLog(@"Pressed Rotate Left");
+}
+
+-(void)pressedRotateRightButton
+{
+    NSLog(@"Pressed Rotate Right");
+}
+
+-(void)sliderValueChanged:(id)sender
+{
+    NSLog(@"Slider Value %i",(int)((UISlider *)sender).value);
 }
 
 - (void)viewDidUnload
