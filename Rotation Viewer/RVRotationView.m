@@ -9,37 +9,48 @@
 #import "RVRotationView.h"
 #import "PSFileManager.h"
 
+#define DEFAULT_DRAG_SENSITIVITY 0.15
+#define DRAGTIME_CUTOFF 0.2
+#define SWIPETIME_CUTOFF 0.05
+
 @interface RVRotationView (private) {
 @private
     
 }
 
 -(void)displayImage;
-
 -(void)decellerateAnimation;
 -(void)invokeDeceleration;
+-(void)checkForValidAnimationPosition;
 
 @end
 
 @implementation RVRotationView
 
 @synthesize imageView;
-@synthesize  imagePaths;
+@synthesize imagePaths;
 @synthesize dragSensitivity;
 @synthesize decelerateAnimation = shouldDecelerateAnimation;
+
+#pragma mark -
+#pragma mark Initialization
+
+-(id)init
+{
+    self = [self initWithFrame:CGRectZero];
+    
+    return self;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        
-        dragSenitivity = 0.15; // default
-        
-        self.backgroundColor = [UIColor grayColor];
-        
+
+        dragSenitivity = DEFAULT_DRAG_SENSITIVITY; // default
+        decelerateAnimation = YES; // default to yes
+
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        imageView.backgroundColor = [UIColor blackColor];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:imageView];
         
@@ -47,6 +58,74 @@
         
     }
     return self;
+}
+
+-(void)dealloc
+{
+    [imagePaths release];
+    
+    if ([decelerationTimer isValid]) {
+        [decelerationTimer invalidate];
+        decelerationTimer = nil;
+    }
+    
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark View Code
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    imageView.frame = self.bounds;
+}
+
+-(void)setNeedsDisplay
+{
+    [super setNeedsDisplay];
+    
+    imageView.frame = self.bounds;
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
+// Rotate one frame left
+
+-(void)rotateLeft
+{
+    
+    animationPosition++;
+    
+    [self checkForValidAnimationPosition];
+    [self displayImage];
+    
+}
+
+// rotate one frame right
+
+-(void)rotateRight
+{
+    animationPosition--;
+    
+    [self checkForValidAnimationPosition];
+    [self displayImage];
+}
+
+// animate rotation left
+
+-(void)animateRotationLeft
+{
+    
+}
+
+// animate rotation right
+
+-(void)animateRotationRight
+{
+    
 }
 
 -(NSInteger)numberOfImages
@@ -63,7 +142,6 @@
     if (imagePosition < [imagePaths count]) {
         
         animationPosition = imagePosition;
-        
         [self displayImage];
         
     }
@@ -71,15 +149,53 @@
     NSLog(@"Error: imagePosition out of Range. Valid Range: 0-%i",[imagePaths count]);
 }
 
--(void)layoutSubviews
+/*
+ 
+ Loads all filenames inside animationDirectory into imagePaths array.
+ Images must be ordered. (i1,i2,i3,i4,...,in => frame 0 degrees, frame 5 degrees, frame 10 degrees...)
+ 
+ Just the filenames are loaded, not the images!
+ 
+ */
+
+-(void)loadAnimationFromDirectory:(NSString *)animationDirectory
 {
-    [super layoutSubviews];
+    // Reset animation position because its assumed that new file is loaded.
     
-    imageView.frame = self.bounds;
+    animationPosition = 0; 
+    
+    // load image names
+    
+    NSFileManager *fileman = [[NSFileManager alloc] init];
+    
+    NSArray *directoryContent = [fileman contentsOfDirectoryAtPath:animationDirectory error:nil];
+    self.imagePaths = [[[NSMutableArray alloc] initWithCapacity:[directoryContent count]] autorelease];
+    
+    for (NSString *image in directoryContent) {
+        
+        [imagePaths addObject:[animationDirectory stringByAppendingPathComponent:image]];
+        
+    }
+    
+    [fileman release];
+    
+    if (imagePaths != nil && [imagePaths count] > 0) {
+        
+        [self displayImageWithPosition:animationPosition];
+        
+    }
+    
 }
+
+#pragma mark -
+#pragma mark - Touch Logic
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    
+    
+    // Cancel active deceleration animation when user touches screen
     
     cancelDeceleration = YES;
     
@@ -90,16 +206,13 @@
         }
     }
     
-    
-    NSLog(@"touches began");
-    
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self];
     
     touchStart = touchPoint;
-    dragStart = touchPoint;
+    swipeStartPoint = touchPoint;
     
-    dragStartTime = [[NSDate date] timeIntervalSince1970];
+   // dragStartTime = [[NSDate date] timeIntervalSince1970];
     swipeStartTime = [[NSDate date] timeIntervalSince1970];
 }
 
@@ -110,19 +223,29 @@
     CGPoint touchPoint = [touch locationInView:self];
     
     
+    // Calculate drag distance. This distance is used to calculate the position
+    // for the next image to be displayed. If the drag distance is high we have
+    // to skip some images to provide a more realistic rotation. Dragdistance is
+    // multiplied with dragSensitivity (should be > 0 and <= 1).
+    
     dragDistance = abs(touchPoint.x-touchStart.x);
     
     dragDistance*=dragSenitivity;
     
+    // set default value if dragDistance is invalid
+    
     if (dragDistance == 0) {
         dragDistance = 1;
     }
-    
-    NSLog(@"%i",dragDistance);
+
+    // detect right swipe/drag
     
     if (touchPoint.x > touchStart.x) {
         animationDirection = 1;
         animationPosition+=dragDistance;
+        
+        
+    // etect left swipe/drag
         
     }else if(touchPoint.x < touchStart.x) {
         animationDirection = -1;
@@ -130,81 +253,77 @@
     }
     
    
-    if (animationPosition < 0) {
-
-        animationPosition = ([imagePaths count]-1);
-    }else if (animationPosition > ([imagePaths count]-1)) {
-
-        animationPosition = 0;
-    }
+    [self checkForValidAnimationPosition];
     
 
     [self displayImage];
     
-    
+
+    // Update values for calculations
     
     touchStart = touchPoint;
+    swipeEndTime = [[NSDate date] timeIntervalSince1970];
     
-    dragEndTime = [[NSDate date] timeIntervalSince1970];
+    // If the time between 2 touch samples is bigger than the dragTimeCutoff the actual
+    // touchpoint will be set as new swipe start point. Needed to detect swipes inside a 
+    // touchesBegan -> touchesEnded cycle
     
-    if (dragEndTime-dragStartTime>0.2) {
+    if (swipeEndTime-swipeStartTime > DRAGTIME_CUTOFF) {
         
-        NSLog(@"Reset drag!!!!!");
-        swipeStartTime= [[NSDate date] timeIntervalSince1970];
-        dragStart = touchPoint;
+        // Set new swipeStartPoint if actual swipe has canceled
+        
+        swipeStartPoint = touchPoint;
     }
     
-    dragStartTime = dragEndTime;
+    swipeStartTime = swipeEndTime;
     
       
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touches ended");
     
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self];
     
-    NSInteger swipeDistance = abs(dragStart.x-touchPoint.x);
-    
-    NSLog(@"dragDistance: %i",swipeDistance);
-    
+    NSInteger swipeDistance = abs(swipeStartPoint.x-touchPoint.x);
+
     NSTimeInterval touchEndTime = [[NSDate date] timeIntervalSince1970];
     
+
     
-    NSLog(@"Swipe Duration %f", touchEndTime-swipeStartTime);
+    // Detect if user finalized swipe or stopped swipe with finger down
+    // on screen.
     
-    NSLog(@"Velocity: %.1f", (float)swipeDistance/(touchEndTime-swipeStartTime));
-    
-    
-    if (touchEndTime-dragEndTime < 0.05f) {
-        NSLog(@"decellerate");
+    if (touchEndTime-swipeEndTime < SWIPETIME_CUTOFF) {
+
         cancelDeceleration = NO;
         
         
-        NSInteger speed = 50;
-        
+        NSInteger framecount = 50;
         
         if ((float)swipeDistance/(touchEndTime-swipeStartTime) > 1500) {
-            speed = 100;
+            framecount = 100;
         }
         
+        decelerationSteps = framecount;
+        numberOfAnimationSteps = framecount;
         
+        // Use last 'frameGap' wich is stored in dragDistance
         
-               
-        //decelerationSteps = dragDistance*0.5f;
-        decelerationSteps = speed;
-        numberOfAnimationSteps = speed;
         startFrameGap = dragDistance;
         actualframeGap = startFrameGap;
-        [self invokeDeceleration];
         
-        NSLog(@"StartGap: %f  ActualGap: %f NumberOfAnimationSteps: %i",startFrameGap,actualframeGap,numberOfAnimationSteps);
-        
+        if (decelerateAnimation) {
+            [self invokeDeceleration];
+        }
+
     }
     
 }
+
+#pragma mark -
+#pragma mark Animation Timers
 
 -(void)invokeDeceleration
 {
@@ -213,45 +332,49 @@
         cancelDeceleration = YES;
         decelerationTimer = nil;
         return;
-        NSLog(@"End of animation");
     }
     
-    decelerationTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(decellerateAnimation) userInfo:nil repeats:NO];
+    // Fire timer to display new frame
+    
+    decelerationTimer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(decellerateAnimation) userInfo:nil repeats:NO];
     
 }
 
 
+#pragma mark -
+#pragma mark Private Methods
+
+// Private Methods
+
+-(void)displayImage
+{
+    imageView.image = [UIImage imageWithContentsOfFile:[imagePaths objectAtIndex:animationPosition]];
+}
 
 -(void)decellerateAnimation
 {
     
-    //NSLog(@"Started deceleration ");
-    
     decelerationSteps--;
     
-              
     animationPosition+=1*animationDirection*actualframeGap;
-        
-
-        if (animationPosition < 0) {
-            
-            animationPosition = ([imagePaths count]-1);
-        }else if (animationPosition > ([imagePaths count]-1)) {
-            
-            animationPosition = 0;
-        }
-        
-        
-        [self displayImage];
-
+    
+    
+    [self checkForValidAnimationPosition];
+    
+    [self displayImage];
+    
+    // Calculate frame gap. (linear interpolation with formula: startFrameGap * (1 - remainingSteps/totalSteps )
+    
     if (decelerationSteps!= 0) {
         actualframeGap = (NSInteger)(startFrameGap*(1-((float)numberOfAnimationSteps-(float)decelerationSteps)/(float)numberOfAnimationSteps));
         
     }
     
-    
+    // Stop animation if frameGap reaches 1 because
+    // animation is over (interpolation finished)
     
     if (actualframeGap < 1) {
+        
         cancelDeceleration = YES;
         
         if (decelerationTimer != nil) {
@@ -261,66 +384,21 @@
             }
         }
     }
-    //NSLog(@">>> %i",animationPosition);
-    //NSLog(@"Ended frame");
     
     [self invokeDeceleration];
     
     
 }
 
--(void)loadAnimationFromDirectory:(NSString *)animationDirectory
+-(void)checkForValidAnimationPosition
 {
-    
-    NSFileManager *fileman = [[NSFileManager alloc] init];
-    
-    
-    NSArray *directoryContent = [fileman contentsOfDirectoryAtPath:animationDirectory error:nil];
-    self.imagePaths = [[NSMutableArray alloc] initWithCapacity:[directoryContent count]];
-    
-    for (NSString *image in directoryContent) {
+    if (animationPosition < 0) {
         
-        [imagePaths addObject:[animationDirectory stringByAppendingPathComponent:image]];
+        animationPosition = ([imagePaths count]-1);
+    }else if (animationPosition > ([imagePaths count]-1)) {
         
-    }
-    NSLog(@"Images:\n%@",imagePaths);
-    [fileman release];
-    
-    if (imagePaths != nil && [imagePaths count] > 0) {
-        
-        imageView.image = [UIImage imageWithContentsOfFile:[imagePaths objectAtIndex:0]];
         animationPosition = 0;
     }
-    
 }
-
--(void)dealloc
-{
-    [imagePaths release];
-    
-    [super dealloc];
-}
-
-#pragma mark -
-#pragma mark Private Methods
-
-// Private Methods
-
--(void)displayImage
-{
-    //NSLog(@"Displaying Image %i",animationPosition);
-    imageView.image = [UIImage imageWithContentsOfFile:[imagePaths objectAtIndex:animationPosition]];
-    
-}
-
-
-
-
-
-
-
-
-
-
 
 @end
