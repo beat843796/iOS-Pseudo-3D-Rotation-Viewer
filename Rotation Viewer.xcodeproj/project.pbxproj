@@ -26,6 +26,7 @@
 		AB93328B14C04DE3000F15D9 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = AB93328614C04DE3000F15D9 /* zip.c */; };
 		AB93328C14C04DED000F15D9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AB93327114C04B1A000F15D9 /* libz.1.2.5.dylib */; };
 		AB93328F14C051B2000F15D9 /* RVRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB93328E14C051B2000F15D9 /* RVRotationView.m */; };
+		AB9332A214C41A16000F15D9 /* RVRotationViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9332A114C41A16000F15D9 /* RVRotationViewDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		AB93328714C04DE3000F15D9 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		AB93328D14C051B2000F15D9 /* RVRotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVRotationView.h; sourceTree = "<group>"; };
 		AB93328E14C051B2000F15D9 /* RVRotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVRotationView.m; sourceTree = "<group>"; };
+		AB9332A014C41A16000F15D9 /* RVRotationViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVRotationViewDelegate.h; sourceTree = "<group>"; };
+		AB9332A114C41A16000F15D9 /* RVRotationViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVRotationViewDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				AB93328D14C051B2000F15D9 /* RVRotationView.h */,
 				AB93328E14C051B2000F15D9 /* RVRotationView.m */,
 				AB93325C14C0420F000F15D9 /* Supporting Files */,
+				AB9332A014C41A16000F15D9 /* RVRotationViewDelegate.h */,
+				AB9332A114C41A16000F15D9 /* RVRotationViewDelegate.m */,
 			);
 			path = "Rotation Viewer";
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				AB93328A14C04DE3000F15D9 /* unzip.c in Sources */,
 				AB93328B14C04DE3000F15D9 /* zip.c in Sources */,
 				AB93328F14C051B2000F15D9 /* RVRotationView.m in Sources */,
+				AB9332A214C41A16000F15D9 /* RVRotationViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

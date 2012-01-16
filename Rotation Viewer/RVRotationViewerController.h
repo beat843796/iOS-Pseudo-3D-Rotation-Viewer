@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RVRotationView.h"
+#import "RVRotationViewDelegate.h"
 
-
-@interface RVRotationViewerController : UIViewController {
+@interface RVRotationViewerController : UIViewController <RVRotationViewDelegate>{
     
     NSString *imageDirectory;
     
@@ -22,7 +22,7 @@
     UIButton *startButton;
     UIButton *stopButton;
     UISlider *rotationSpeedSlider;
-    
+   
 }
 
 @property (nonatomic, retain) NSString *imageDirectory;

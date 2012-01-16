@@ -12,6 +12,8 @@
 #define DEFAULT_DRAG_SENSITIVITY 0.15
 #define DRAGTIME_CUTOFF 0.2
 #define SWIPETIME_CUTOFF 0.05
+#define DEFULAT_ANIMATIONSPEED 1
+#define ANIMATION_FRAMERATE 0.03
 
 @interface RVRotationView (private) {
 @private
@@ -22,15 +24,22 @@
 -(void)decellerateAnimation;
 -(void)invokeDeceleration;
 -(void)checkForValidAnimationPosition;
+-(void)invokeRotationAnimation;
+-(void)doAnimation;
 
 @end
 
 @implementation RVRotationView
 
+@synthesize delegate;
+
 @synthesize imageView;
 @synthesize imagePaths;
 @synthesize dragSensitivity;
-@synthesize decelerateAnimation = shouldDecelerateAnimation;
+@synthesize decelerateAnimation;
+@synthesize animationSpeed;
+@synthesize isAnimating;
+@synthesize animationDirection;
 
 #pragma mark -
 #pragma mark Initialization
@@ -48,8 +57,11 @@
     if (self) {
 
         dragSenitivity = DEFAULT_DRAG_SENSITIVITY; // default
-        decelerateAnimation = YES; // default to yes
-
+        decelerateAnimation = YES; // default to no
+        animationSpeed = DEFULAT_ANIMATIONSPEED;
+        isAnimating = NO;
+        animationDirection = RVRotationViewDirectionRight; // default to right
+        
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:imageView];
@@ -116,15 +128,37 @@
 
 // animate rotation left
 
--(void)animateRotationLeft
+
+
+-(void)startRotationAnimationWithDirection:(RVRotationViewDirection)direction
 {
+    
+    if (isAnimating) {
+        return;
+    }
+    
+    animationDirection = direction;
+    
+    [self invokeRotationAnimation];
+    
+    if (delegate != nil && [delegate respondsToSelector:@selector(rotationViewDidStartAnimating:)]) {
+        [delegate rotationViewDidStartAnimating:self];
+    }
     
 }
 
-// animate rotation right
-
--(void)animateRotationRight
+-(void)stopRotationAnimation
 {
+    if ([animationTimer isValid]) {
+        [animationTimer invalidate];
+        animationTimer = nil;
+    }
+    
+    isAnimating = NO;
+    
+    if (delegate != nil && [delegate respondsToSelector:@selector(rotationViewDidStopAnimating:)]) {
+        [delegate rotationViewDidStopAnimating:self];
+    }
     
 }
 
@@ -193,7 +227,11 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
+    // Cancel Rotation Animation if active
     
+    if ([animationTimer isValid]) {
+        [self stopRotationAnimation];
+    }
     
     // Cancel active deceleration animation when user touches screen
     
@@ -314,7 +352,14 @@
         startFrameGap = dragDistance;
         actualframeGap = startFrameGap;
         
+        
+        
         if (decelerateAnimation) {
+            
+            if (delegate != nil && [delegate respondsToSelector:@selector(rotationViewDidStartDecelerating:)]) {
+                [delegate rotationViewDidStartDecelerating:self];
+            }
+            
             [self invokeDeceleration];
         }
 
@@ -328,15 +373,20 @@
 -(void)invokeDeceleration
 {
     
+    
+    
     if (decelerationSteps <= 0 || cancelDeceleration) {
         cancelDeceleration = YES;
         decelerationTimer = nil;
+        
+        
+        
         return;
     }
     
     // Fire timer to display new frame
     
-    decelerationTimer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(decellerateAnimation) userInfo:nil repeats:NO];
+    decelerationTimer = [NSTimer scheduledTimerWithTimeInterval:ANIMATION_FRAMERATE target:self selector:@selector(decellerateAnimation) userInfo:nil repeats:NO];
     
 }
 
@@ -345,6 +395,21 @@
 #pragma mark Private Methods
 
 // Private Methods
+
+-(void)invokeRotationAnimation
+{
+    
+    // Cancel deceleration animation if active
+    
+    if ([decelerationTimer isValid]) {
+        [decelerationTimer invalidate];
+        decelerationTimer = nil;
+    }
+    
+    isAnimating = YES;
+    
+    animationTimer = [NSTimer scheduledTimerWithTimeInterval:ANIMATION_FRAMERATE target:self selector:@selector(doAnimation) userInfo:nil repeats:NO];
+}
 
 -(void)displayImage
 {
@@ -383,11 +448,28 @@
                 decelerationTimer = nil;
             }
         }
+        
+        if (delegate != nil && [delegate respondsToSelector:@selector(rotationViewDidStopDecelerating:)]) {
+            [delegate rotationViewDidStopDecelerating:self];
+        }
+        
     }
     
     [self invokeDeceleration];
     
     
+}
+
+-(void)doAnimation
+{
+    
+    animationPosition+=1*animationDirection*animationSpeed;
+    
+    [self checkForValidAnimationPosition];
+    
+    [self displayImage];
+    
+    [self invokeRotationAnimation];
 }
 
 -(void)checkForValidAnimationPosition
