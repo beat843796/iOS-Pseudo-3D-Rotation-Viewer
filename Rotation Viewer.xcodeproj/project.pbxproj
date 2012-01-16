@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB08296114C21DB3008FE69A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB08296014C21DB3008FE69A /* Icon.png */; };
+		AB08296314C21E36008FE69A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB08296214C21E36008FE69A /* Icon@2x.png */; };
+		AB08296514C21E4A008FE69A /* Icon_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB08296414C21E4A008FE69A /* Icon_iPhone.png */; };
 		AB93325614C0420F000F15D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB93325514C0420F000F15D9 /* UIKit.framework */; };
 		AB93325814C0420F000F15D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB93325714C0420F000F15D9 /* Foundation.framework */; };
 		AB93325A14C0420F000F15D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB93325914C0420F000F15D9 /* CoreGraphics.framework */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB08296014C21DB3008FE69A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		AB08296214C21E36008FE69A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		AB08296414C21E4A008FE69A /* Icon_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_iPhone.png; sourceTree = "<group>"; };
 		AB93325114C0420F000F15D9 /* Rotation Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotation Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB93325514C0420F000F15D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB93325714C0420F000F15D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,6 +82,9 @@
 		AB93324614C0420E000F15D9 = {
 			isa = PBXGroup;
 			children = (
+				AB08296414C21E4A008FE69A /* Icon_iPhone.png */,
+				AB08296214C21E36008FE69A /* Icon@2x.png */,
+				AB08296014C21DB3008FE69A /* Icon.png */,
 				AB93327C14C04D9A000F15D9 /* libz.1.1.3.dylib */,
 				AB93327114C04B1A000F15D9 /* libz.1.2.5.dylib */,
 				AB93325B14C0420F000F15D9 /* Rotation Viewer */,
@@ -209,6 +218,9 @@
 			files = (
 				AB93326014C0420F000F15D9 /* InfoPlist.strings in Resources */,
 				AB93327814C04C03000F15D9 /* animation_sample.zip in Resources */,
+				AB08296114C21DB3008FE69A /* Icon.png in Resources */,
+				AB08296314C21E36008FE69A /* Icon@2x.png in Resources */,
+				AB08296514C21E4A008FE69A /* Icon_iPhone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +348,7 @@
 				AB93326B14C0420F000F15D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
