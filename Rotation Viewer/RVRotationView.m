@@ -101,6 +101,13 @@
     imageView.frame = self.bounds;
 }
 
+-(void)setNeedsLayout
+{
+    [super setNeedsLayout];
+    
+    imageView.frame = self.bounds;
+}
+
 #pragma mark -
 #pragma mark Public Methods
 

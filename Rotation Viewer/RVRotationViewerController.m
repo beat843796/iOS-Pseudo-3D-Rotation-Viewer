@@ -32,6 +32,8 @@
         
         // init code
         
+        
+        
     }
     
     return self;
@@ -82,13 +84,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    rotationView = [[RVRotationView alloc] initWithFrame:CGRectZero];
+    rotationView = [[RVRotationView alloc] initWithFrame:self.view.bounds];
     
     rotationView.delegate = self;
     
+    [rotationView loadAnimationFromDirectory:self.imageDirectory];
+
     self.view = rotationView;
     
-    [rotationView loadAnimationFromDirectory:self.imageDirectory];
+    //[rotationView displayImageWithPosition:0];
+    
     
     rotateLeftButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [rotateLeftButton addTarget:self action:@selector(pressedRotateLeftButton) forControlEvents:UIControlEventTouchUpInside];
@@ -141,6 +146,12 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    [super viewDidAppear:animated];
+    
+}
 
 -(void)decelerationSwitchChanges:(id)sender
 {

@@ -313,11 +313,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Clemens Hammerl";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clemens Hammerl";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rotation Viewer/Rotation Viewer-Prefix.pch";
 				INFOPLIST_FILE = "Rotation Viewer/Rotation Viewer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CB402FC6-48B2-489B-8B77-CF295A25157F";
+				PROVISIONING_PROFILE = "399B8E18-1433-41E0-9C28-281ACF48AB2C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "399B8E18-1433-41E0-9C28-281ACF48AB2C";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
@@ -327,11 +329,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Clemens Hammerl";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clemens Hammerl";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rotation Viewer/Rotation Viewer-Prefix.pch";
 				INFOPLIST_FILE = "Rotation Viewer/Rotation Viewer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CB402FC6-48B2-489B-8B77-CF295A25157F";
+				PROVISIONING_PROFILE = "399B8E18-1433-41E0-9C28-281ACF48AB2C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "399B8E18-1433-41E0-9C28-281ACF48AB2C";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
